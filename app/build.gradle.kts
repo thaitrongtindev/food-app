@@ -48,4 +48,14 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //iniuit
+    implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation ("com.intuit.ssp:ssp-android:1.1.0")
+
+    //gif
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
+
+
+
 }
