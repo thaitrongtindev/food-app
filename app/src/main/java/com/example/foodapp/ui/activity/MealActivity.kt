@@ -1,5 +1,7 @@
 package com.example.foodapp.ui.activity
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +20,7 @@ class MealActivity : AppCompatActivity() {
     private lateinit var idMeal: String
     private lateinit var nameMeal: String
     private lateinit var thumbMeal: String
+    private lateinit var youtubeLink: String
     private lateinit var mealViewModel: MealViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +36,15 @@ class MealActivity : AppCompatActivity() {
         mealViewModel.getMealDetails(idMeal)
 
         observerMealdDetailsLiveData()
+        onYoutubeImageClick()
 
+    }
 
+    private fun onYoutubeImageClick() {
+        binding.imgYoutube.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeLink))
+            startActivity(intent)
+        }
     }
 
     private fun observerMealdDetailsLiveData() {
@@ -44,7 +54,8 @@ class MealActivity : AppCompatActivity() {
                 binding.tvAreaInfo.text = it.strArea
                 binding.tvCategoryInfo.text = it.strCategory
                 binding.tvInstructions.text = it.strInstructions
-            }
+                youtubeLink = it.strYoutube
+                            }
         )
     }
 
