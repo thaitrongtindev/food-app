@@ -1,20 +1,18 @@
 package com.example.foodapp.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.foodapp.R
 import com.example.foodapp.databinding.PopularItemBinding
-import com.example.foodapp.pojo.CategoryMeals
-import com.example.foodapp.pojo.MealList
+import com.example.foodapp.pojo.MealByCategory
 
 class PopularAdapter : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
-    private var mealList = ArrayList<CategoryMeals>()
-    public lateinit var onItemClick: ((CategoryMeals) -> Unit)
+    private var mealList = ArrayList<MealByCategory>()
+    public lateinit var onItemClick: ((MealByCategory) -> Unit)
+    lateinit var onItemLongClick : ((MealByCategory) -> Unit)
 
-    fun setData(mealList: ArrayList<CategoryMeals>) {
+    fun setData(mealList: ArrayList<MealByCategory>) {
         this.mealList.clear()
         this.mealList.addAll(mealList)
         notifyDataSetChanged()
@@ -37,6 +35,11 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() 
 
         holder.itemView.setOnClickListener {
             onItemClick.invoke(meal)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            onItemLongClick?.invoke(meal)
+            true
         }
     }
 }
